@@ -1,0 +1,15 @@
+eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/view/application-form.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/assign-role.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/departments.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/faculty-form.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/home.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/include/header.jspf=UTF-8
+encoding//WebContent/WEB-INF/view/list-faculties.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/list-members.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/list-students.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/list-users.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/manage-users.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/qualification.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/secretary-form.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/student-form.jsp=UTF-8
