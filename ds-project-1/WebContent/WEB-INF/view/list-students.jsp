@@ -14,7 +14,7 @@
 			<th>Email</th>
 			<th>Αριθμός μητρώου</th>
 			<th>Τμήμα</th>
-			<th>Έτος φοίτησης</th>
+			<th>Έτος έναρξης σπουδών</th>
 			<th>Ενέργειες</th>
 		</thead>
 		<!-- loop over and print our customers -->
@@ -26,7 +26,7 @@
 				<td>${tempStudent.email}</td>
 				<td>${tempStudent.id}</td>
 				<td>${tempStudent.department}</td>
-				<td>2018 - ${tempStudent.yearOfRegistration}</td>
+				<td>${tempStudent.yearOfRegistration}</td>
 				<td>
 					<sec:authorize access="hasRole('ADMIN')">
 						<a

@@ -9,7 +9,7 @@
 		<thead>
 			<th>Επώνυμο</th>
 			<th>Όνομα</th>
-			<th>Email</th>
+			<th>Email</th>			
 			<th>Τμήμα</th>
 			<th>Ενέργειες</th>
 		</thead>
