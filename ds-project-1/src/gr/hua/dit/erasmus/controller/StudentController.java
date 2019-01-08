@@ -76,33 +76,35 @@ public class StudentController {
 		return "redirect:/student/list";
 	}
 	
-	//not working ! method not allowed
-	@GetMapping("/submitApplication/(id}")
+	//not working ! 500 error
+	@GetMapping("/{id}/submitApplication")
 	public String submitApplication(Model model, @PathVariable("id") int id) {
 		
-		Student student = studentService.getStudent(id);		
-		List<Faculty> faculties = facultyService.getStudentFaculties(student.getDepartment());
+		Student student = studentService.getStudent(id);	
 		model.addAttribute("student", student);
+		List<Faculty> faculties = facultyService.getStudentFaculties(student.getDepartment());
 		model.addAttribute("faculties", faculties);
 		
 		Application application = new Application();
 		model.addAttribute("application", application);
-		application.setStudent(student);
 		return "application-form";		
 	}
 	
 	//not working
-	@PostMapping("/submitApplication/{id}")
-	public String submitApplicationToFaculty(Model model, @PathVariable("id") int id, @RequestParam("facultyId") int facultyId, @RequestParam int applicationId) {
+	@PostMapping("/{id}/submitApplication/{facultyId}")
+	public String submitApplicationToFaculty(@ModelAttribute("application") Application application, @PathVariable("id") int id, @PathVariable("facultyId") int facultyId) {
 		
 		Student student = studentService.getStudent(id);
 		Faculty faculty = facultyService.getFaculty(facultyId);		
-		Application application = applicationService.getApplication(applicationId);
+		applicationService.saveApplication(application);
+		application.setStudent(student);
 		application.setFaculty(faculty);
-		List<Application> applications = applicationService.getFacultyApplications(id);
-		applications.add(application);
-		student.setApplications(applications);
-		faculty.setApplications(applications);
-		return "list-applications";		
+		List<Application> facultyApplications = applicationService.getFacultyApplications(facultyId);
+		facultyApplications.add(application);		
+		faculty.setApplications(facultyApplications);
+		List<Application> studentApplications = applicationService.getStudentApplications(id);
+		studentApplications.add(application);
+		student.setApplications(studentApplications);
+		return "redirect:/application/student/{id}/list";	
 	}
 }

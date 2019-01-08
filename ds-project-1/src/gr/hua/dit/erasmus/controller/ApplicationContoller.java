@@ -55,7 +55,7 @@ public class ApplicationContoller {
 	}
 
 	@GetMapping("/list/unchecked")
-	public String listUncheckedApplications(Model model, @PathVariable("id") int id) {
+	public String listUncheckedApplications(Model model) {
 		
 		List<Application> uncheckedApplications = applicationService.getUncheckedApplications();
 		model.addAttribute("applications", uncheckedApplications);
@@ -88,21 +88,21 @@ public class ApplicationContoller {
 		model.addAttribute("pageTitle", "Δηλώσεις τμήματος");
 		return "list-applications";
 	}
-
-	@GetMapping("/addApplication")
-	public String addApplication(Model model) {
-		
-		Application application = new Application();
-		model.addAttribute("application", application);
-		model.addAttribute("pageTitle", "Υποβολή Δήλωσης");
-		return "application-form";
-	}
-
+	
 	@GetMapping("/delete/{id}")
 	public String deleteApplication(Model model, @PathVariable("id") int id) {
 		
 		applicationService.deleteApplication(id);
 		return "redirect:/application/list";
+	}
+	
+/*	@GetMapping("/submitApplication/")
+	public String submitApplication(Model model) {
+		
+		Application application = new Application();
+		model.addAttribute("application", application);
+		model.addAttribute("pageTitle", "Υποβολή Δήλωσης");
+		return "application-form";
 	}
 
 	@PostMapping("/saveApplication")
@@ -111,5 +111,6 @@ public class ApplicationContoller {
 		applicationService.saveApplication(application);
 		return "redirect:/application/list";
 	}
+*/
 
 }
