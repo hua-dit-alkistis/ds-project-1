@@ -43,6 +43,10 @@
 			<label>Έτος γέννησης</label>
 			<form:input path="yearOfBirth" />
 		</div>
+		<div class="field">
+			<label>Υπόλοιπο μαθημάτων</label> 
+			<form:input path="numberOfRemainingClasses"/>
+		</div>
 
 		<button class="ui button" type="submit">Save</button>
 	</form:form>

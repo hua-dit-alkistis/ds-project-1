@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import gr.hua.dit.erasmus.entity.Faculty;
+import gr.hua.dit.erasmus.entity.Student;
 
 @Repository
 public class FacultyDAOImpl implements FacultyDAO {
@@ -92,13 +93,14 @@ public class FacultyDAOImpl implements FacultyDAO {
    		currentSession.delete(faculty);
 	}
 
-	@Override
+/*	@Override
 	public List<Faculty> getStudentFaculties(String department) {
 		
         Session currentSession = sessionFactory.getCurrentSession();
-        Query<Faculty> query = currentSession.createQuery("from Faculty where department= " +department, Faculty.class);
+        Query<Faculty> query = currentSession.createQuery("from Faculty where department="+department, Faculty.class);
         List<Faculty> faculties = (List<Faculty>) query.getResultList();
         return faculties; 
 	}
-	
+*/	
+
 }

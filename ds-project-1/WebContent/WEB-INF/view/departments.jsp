@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<img src="${pageContext.request.contextPath}/resources/img/erasmus.png" alt="Erasmus" width="1532" height="452">
 <div class="ui segment">
-<img src="${pageContext.request.contextPath}/resources/img/erasmus.png" alt="Erasmus" width="1490" height="430">
-<br>
 	<h3>Συνεργαζόμενα Εκπαιδευτικά Ιδρύματα</h3>
 	<br>
 	<a
@@ -18,4 +18,4 @@
 	<br>
 	<a
 	href="<c:url value="/faculty/list/Geography"></c:url>"><b>Γεωγραφίας</b></a>
-	
+</div>

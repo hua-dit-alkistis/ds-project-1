@@ -64,11 +64,5 @@ public class FacultyServiceImpl implements FacultyService {
 	public List<Faculty> getGeographyFaculties() {
 		return facultyDAO.getGeographyFaculties();
 	}
-
-	@Override
-	@Transactional
-	public List<Faculty> getStudentFaculties(String department) {
-		return facultyDAO.getStudentFaculties(department);
-	}
 	
 }

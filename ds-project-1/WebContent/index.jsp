@@ -1,1 +1,1 @@
-<% response.sendRedirect("/home"); %>
+<% response.sendRedirect("/ds-project-1/home"); %>

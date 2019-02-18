@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import gr.hua.dit.erasmus.entity.Application;
+import gr.hua.dit.erasmus.entity.Faculty;
 import gr.hua.dit.erasmus.service.ApplicationService;
-import gr.hua.dit.erasmus.service.StudentService;
+import gr.hua.dit.erasmus.service.FacultyService;
 
 @Controller
 @RequestMapping("/application")
@@ -22,7 +23,7 @@ public class ApplicationContoller {
 	private ApplicationService applicationService;
 
 	@Autowired
-	private StudentService studentService;
+	private FacultyService facultyService;
 	
 
 	@GetMapping("/list")
@@ -71,6 +72,27 @@ public class ApplicationContoller {
 		return "application-form";
 	}
 	
+	@GetMapping("/{id}/approve")
+	public String approveApplication(Model model, @PathVariable("id") int id) {
+		
+		Application application = applicationService.getApplication(id);
+		application.setStatus("approved");
+		applicationService.saveApplication(application);
+		Faculty faculty = application.getFaculty();
+		faculty.approveApplication();
+		facultyService.saveFaculty(faculty);
+		return "redirect:/application/list";
+	}
+	
+	@GetMapping("/{id}/disapprove")
+	public String disapproveApplication(Model model, @PathVariable("id") int id) {
+		
+		Application application = applicationService.getApplication(id);
+		application.setStatus("disapproved");
+		applicationService.saveApplication(application);
+		return "redirect:/application/list";
+	}
+	
 	@GetMapping("/student/{id}/list")
 	public String listStudentApplications(Model model, @PathVariable("id") int id) {
 
@@ -95,15 +117,6 @@ public class ApplicationContoller {
 		applicationService.deleteApplication(id);
 		return "redirect:/application/list";
 	}
-	
-/*	@GetMapping("/submitApplication/")
-	public String submitApplication(Model model) {
-		
-		Application application = new Application();
-		model.addAttribute("application", application);
-		model.addAttribute("pageTitle", "Υποβολή Δήλωσης");
-		return "application-form";
-	}
 
 	@PostMapping("/saveApplication")
 	public String saveApplication(@ModelAttribute("application") Application application) {
@@ -111,6 +124,6 @@ public class ApplicationContoller {
 		applicationService.saveApplication(application);
 		return "redirect:/application/list";
 	}
-*/
+
 
 }

@@ -21,6 +21,4 @@ public interface FacultyDAO {
 
 	public List<Faculty> getGeographyFaculties();
 
-	public List<Faculty> getStudentFaculties(String department);
-
 }

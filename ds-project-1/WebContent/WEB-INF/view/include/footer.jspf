@@ -1,11 +1,14 @@
+ <style>
+ body{
+ background-color: #d6f5f5;
+ }
+ </style>
 </div>
-
 <sec:authorize access="isAuthenticated()">
 	<div class="ui segment">
 	User: <sec:authentication property="principal.username" />, Role: <sec:authentication property="principal.authorities"/>
 	</div>
 </sec:authorize>
-
 <div class="ui inverted vertical footer segment form-page">
 	<div class="ui container">Harokopio University</div>
 </div>

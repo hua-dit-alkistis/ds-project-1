@@ -38,9 +38,10 @@ public class Student {
 	private String yearOfRegistration;
 	@Column(name = "year_of_birth")
 	private String yearOfBirth;
+	@Column(name = "number_of_remaining_classes")
+	private int numberOfRemainingClasses;
 	
-	//mappedBy = "student"
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "student_id")
 	private List<Application> applications;
 
@@ -49,7 +50,7 @@ public class Student {
 	}
 
 	public Student(String lastName, String firstName, String username, String email, String department,
-			String nameOfFather, String yearOfRegistration, String yearOfBirth) {
+			String nameOfFather, String yearOfRegistration, String yearOfBirth, int numberOfRemainingClasses) {
 		super();
 		this.lastName = lastName;
 		this.firstName = firstName;
@@ -59,6 +60,7 @@ public class Student {
 		this.nameOfFather = nameOfFather;
 		this.yearOfRegistration = yearOfRegistration;
 		this.yearOfBirth = yearOfBirth;
+		this.numberOfRemainingClasses = numberOfRemainingClasses;
 	}
 
 	public int getId() {
@@ -133,6 +135,14 @@ public class Student {
 		this.yearOfBirth = yearOfBirth;
 	}
 
+	public int getNumberOfRemainingClasses() {
+		return numberOfRemainingClasses;
+	}
+
+	public void setNumberOfRemainingClasses(int numberOfRemainingClasses) {
+		this.numberOfRemainingClasses = numberOfRemainingClasses;
+	}
+
 	public List<Application> getApplications() {
 		return applications;
 	}
@@ -153,8 +163,10 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", username=" + username
-				+ ", email=" + email + ", department=" + department + ", nameOfFather="
-				+ nameOfFather + ", yearOfRegistration=" + yearOfRegistration + ", yearOfBirth=" + yearOfBirth + "]";
+				+ ", email=" + email + ", department=" + department + ", nameOfFather=" + nameOfFather
+				+ ", yearOfRegistration=" + yearOfRegistration + ", yearOfBirth=" + yearOfBirth
+				+ ", numberOfRemainingClasses=" + numberOfRemainingClasses + "]";
 	}
+
 }
 

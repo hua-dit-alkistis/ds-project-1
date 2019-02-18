@@ -20,8 +20,6 @@ public interface FacultyService {
 	public List<Faculty> getInformaticsFaculties();
 
 	public List<Faculty> getGeographyFaculties();
-
-	public List<Faculty> getStudentFaculties(String department);
 	
 }
 

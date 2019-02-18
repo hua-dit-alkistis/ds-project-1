@@ -20,6 +20,7 @@ import gr.hua.dit.erasmus.date.DateUtils;
 @Entity
 @Table(name = "application")
 public class Application {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -35,14 +36,12 @@ public class Application {
 	private String nameOfFaculty;
 	@Column(name = "language_certification")
 	private String languageCertification;
-	@Column(name = "number_of_remaining_classes")
-	private int numberOfRemainingClasses;
 	@Column(name = "status")
 	private String status;
 /*	@Column(name = "student_id")
 	private int studentId;
 	@Column(name = "faculty_id")
-	private int facultyid;
+	private int facultyId;
 */
 	
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
@@ -60,14 +59,13 @@ public class Application {
 	}
 
 	public Application(Date dateOfSubmission, String currentSemester, String department, String nameOfFaculty,
-		String languageCertification, int numberOfRemainingClasses, String status) {
+		String languageCertification, String status) {
 	super();
 	this.dateOfSubmission = dateOfSubmission;
 	this.currentSemester = currentSemester;
 	this.department = department;
 	this.nameOfFaculty = nameOfFaculty;
 	this.languageCertification = languageCertification;
-	this.numberOfRemainingClasses = numberOfRemainingClasses;
 	this.status = status;
 	}
 
@@ -95,14 +93,6 @@ public class Application {
 		this.currentSemester = currentSemester;
 	}
 
-	public int getNumberOfRemainingClasses() {
-		return numberOfRemainingClasses;
-	}
-
-	public void setNumberOfRemainingClasses(int numberOfRemainingClasses) {
-		this.numberOfRemainingClasses = numberOfRemainingClasses;
-	}
-
 	public String getNameOfFaculty() {
 		return nameOfFaculty;
 	}
@@ -111,22 +101,6 @@ public class Application {
 		this.nameOfFaculty = nameOfFaculty;
 	}
 
-/*	public int getStudentId() {
-		return studentId;
-	}
-
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
-	}
-
-	public int getFacultyid() {
-		return facultyid;
-	}
-
-	public void setFacultyid(int facultyid) {
-		this.facultyid = facultyid;
-	}
-*/
 	public String getLanguageCertification() {
 		return languageCertification;
 	}
@@ -171,8 +145,7 @@ public class Application {
 	public String toString() {
 		return "Application [id=" + id + ", dateOfSubmission=" + dateOfSubmission + ", currentSemester="
 				+ currentSemester + ", department=" + department + ", nameOfFaculty=" + nameOfFaculty
-				+ ", languageCertification=" + languageCertification + ", numberOfRemainingClasses="
-				+ numberOfRemainingClasses + ", status=" + status + ", student=" + student + ", faculty=" + faculty
+				+ ", languageCertification=" + languageCertification + ", status=" + status + ", student=" + student + ", faculty=" + faculty
 				+ "]";
 	}
 

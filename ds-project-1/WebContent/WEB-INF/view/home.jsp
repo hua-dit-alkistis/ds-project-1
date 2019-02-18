@@ -1,23 +1,16 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
+<img src="${pageContext.request.contextPath}/resources/img/erasmus.png" alt="Erasmus" width="1532" height="452">
 <div class="ui segment">
-<img src="${pageContext.request.contextPath}/resources/img/erasmus.png" alt="Erasmus" width="1490" height="430">
-<div class="home">
-  <h2>Ζήστε μία αξέχαστη φοιτητική εμπειρία!</h2>
-  <p>Δηλώστε συμμετοχή στο Πρόγραμμα Μαθησιακής Κινητικότητας και κυνηγήστε τα όνειρα σας 
-  σε καταρτισμένα Εκπαιδευτικά Ιδρύματα του εξωτερικού.</p>
-  <a href="${pageContext.request.contextPath}/student/submitApplication/{id}" 
-  target="_blank"><b>Υπεύθυνη Δήλωση Συμμετοχής 2018-2019</b></a>
-</div>
-<sec:authorize access="hasAnyRole('USER','ADMIN')">
-<div class="home">
   <h2>Συνεισφέρετε στον έλεγχο δηλώσεων</h2>
-  <a href="${pageContext.request.contextPath}/application/list/approved" >Εγκεκριμένες</a>
+  <a href="${pageContext.request.contextPath}/application/list/approved" ><b>Εγκεκριμένες</b></a>
   <br>
-  <a href="${pageContext.request.contextPath}/application/list/disapproved" >Μη εγκεκριμένες</a>
+  <a href="${pageContext.request.contextPath}/application/list/disapproved" ><b>Μη εγκεκριμένες</b></a>
   <br>
-  <a href="${pageContext.request.contextPath}/application/list/unchecked" >Υπό έλεγχο</a>
-</div>
-</sec:authorize>
+  <a href="${pageContext.request.contextPath}/application/list/unchecked" ><b>Υπό έλεγχο</b></a>
+  <br>
+  <br>
+  <a style="color:SlateBlue;" 
+  href="<c:url value="/application/list"></c:url>">Δείτε όλες τις δηλώσεις του εξαμήνου</a>	
 </div>

@@ -25,12 +25,6 @@ public class StudentController {
 
 	@Autowired
 	private StudentService studentService;
-	
-	@Autowired 
-	private FacultyService facultyService;
-	
-	@Autowired 
-	private ApplicationService applicationService;
 
 	@GetMapping("/list")
 	public String listStudents(Model model) {
@@ -75,36 +69,5 @@ public class StudentController {
 		studentService.saveStudent(student);		
 		return "redirect:/student/list";
 	}
-	
-	//not working ! 500 error
-	@GetMapping("/{id}/submitApplication")
-	public String submitApplication(Model model, @PathVariable("id") int id) {
-		
-		Student student = studentService.getStudent(id);	
-		model.addAttribute("student", student);
-		List<Faculty> faculties = facultyService.getStudentFaculties(student.getDepartment());
-		model.addAttribute("faculties", faculties);
-		
-		Application application = new Application();
-		model.addAttribute("application", application);
-		return "application-form";		
-	}
-	
-	//not working
-	@PostMapping("/{id}/submitApplication/{facultyId}")
-	public String submitApplicationToFaculty(@ModelAttribute("application") Application application, @PathVariable("id") int id, @PathVariable("facultyId") int facultyId) {
-		
-		Student student = studentService.getStudent(id);
-		Faculty faculty = facultyService.getFaculty(facultyId);		
-		applicationService.saveApplication(application);
-		application.setStudent(student);
-		application.setFaculty(faculty);
-		List<Application> facultyApplications = applicationService.getFacultyApplications(facultyId);
-		facultyApplications.add(application);		
-		faculty.setApplications(facultyApplications);
-		List<Application> studentApplications = applicationService.getStudentApplications(id);
-		studentApplications.add(application);
-		student.setApplications(studentApplications);
-		return "redirect:/application/student/{id}/list";	
-	}
+
 }

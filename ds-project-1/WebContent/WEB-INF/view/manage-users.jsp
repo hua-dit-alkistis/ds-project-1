@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<img src="${pageContext.request.contextPath}/resources/img/erasmus.png" alt="Erasmus" width="1532" height="452">
 <div class="ui segment">
-<img src="${pageContext.request.contextPath}/resources/img/erasmus.png" alt="Erasmus" width="1490" height="430">
-<br>
 	<h3>Διαχείριση χρηστών</h3>
 	<br>
 	<a
@@ -15,4 +15,4 @@
 	<a
 	href="<c:url value="/user/list"></c:url>"><b>Λίστα χρηστών</b></a>
 	<br>
-	<br>
+</div>

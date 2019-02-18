@@ -1,5 +1,6 @@
 package gr.hua.dit.erasmus.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,8 +22,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 	public List<Application> getApplications() {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
-		Query<Application> query = currentSession.createQuery("from Application order by dateOfSubmission", 
-				Application.class);
+		Query<Application> query = currentSession.createQuery("from Application", Application.class);
 		List<Application> applications = (List<Application>) query.getResultList();
 		return applications;
 	}
@@ -30,8 +30,8 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 	@Override
 	public void saveApplication(Application application) {
 		
-		Session currentSession = sessionFactory.getCurrentSession();
-		currentSession.save(application);
+		Session currentSession = sessionFactory.getCurrentSession();				
+		currentSession.update(application);			
 	}
 
 	@Override
@@ -80,19 +80,6 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 		return uncheckedApplications;
 	}
 
-	// not working ! 500 error query exception
-	@Override
-	public List<Application> getFacultyApprovedApplications(int facultyId) {
-		Session currentSession = sessionFactory.getCurrentSession();
-
-		Query<Application> query = currentSession.createQuery("from Application a where a.status='approved' "
-				+ "AND a.facultyId= :facultyId "
-				+ "order by a.numberOfRemainingClasses", Application.class);
-		query.setParameter("facultyId", facultyId);
-		List<Application> applications = (List<Application>) query.getResultList();
-		return applications;
-	}
-
 	@Override
 	public List<Application> getStudentApplications(int studentId) {
 
@@ -111,4 +98,13 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 		return faculty.getApplications();
 	}
 
+	@Override
+	public List<Application> getFacultyApprovedApplications(int facultyId) {
+
+		Session currentSession = sessionFactory.getCurrentSession();
+		Faculty faculty = (Faculty) currentSession.createQuery("from  Faculty where id = " +facultyId).getSingleResult();
+		List<Application> applications = faculty.getApprovedApplications();
+		return applications;
+	} 
 }
+

@@ -41,8 +41,7 @@ public class Faculty {
 	@Column(name = "contact_info")
 	private String contactInfo;
 	
-	//mappedBy = "faculty"
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "faculty_id")
 	private List<Application> applications;
 
@@ -124,7 +123,9 @@ public class Faculty {
 	public void setContactInfo(String contactInfo) {
 		this.contactInfo = contactInfo;
 	}
-	
+	public void approveApplication() {
+		this.numberOfSpotsAvailable--;
+	}
 	
 	public List<Application> getApplications() {
 		return applications;
@@ -142,8 +143,21 @@ public class Faculty {
 		applications.add(anApplication);
 		anApplication.setFaculty(this);
 	}
-
 	
+	public List<Application> getApprovedApplications() {
+		List<Application> approvedApplications = new ArrayList<>();
+		for (Application a: applications) {
+			String status = a.getStatus();
+			if (status == "approved") {
+				if (approvedApplications == null) {
+					approvedApplications = new ArrayList<>();
+				}
+				approvedApplications.add(a);	
+			}
+		}
+		return approvedApplications;
+	}
+
 	@Override
 	public String toString() {
 		return "Faculty [id=" + id + ", name=" + name + ", university=" + university + ", department=" + department

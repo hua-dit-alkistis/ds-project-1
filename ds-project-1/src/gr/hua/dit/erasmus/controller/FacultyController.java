@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import gr.hua.dit.erasmus.entity.Application;
 import gr.hua.dit.erasmus.entity.Faculty;
+import gr.hua.dit.erasmus.entity.Student;
 import gr.hua.dit.erasmus.service.ApplicationService;
 import gr.hua.dit.erasmus.service.FacultyService;
+import gr.hua.dit.erasmus.service.StudentService;
 
 @Controller
 @RequestMapping("/faculty")
@@ -21,6 +23,10 @@ public class FacultyController {
 
 	@Autowired
 	private FacultyService facultyService;
+	
+	@Autowired
+	private StudentService studentService;
+
 	
 	@Autowired
 	private ApplicationService applicationService;
@@ -113,14 +119,14 @@ public class FacultyController {
 		return "redirect:/faculty/list";
 	}
 	
-	//not working ! query exception
+	
 	@GetMapping("/{id}/applications/approved")
 	public String getFacultyApprovedApprications(Model model, @PathVariable("id") int id) {
 		
-		List<Application> applications = applicationService.getFacultyApprovedApplications(id);
-		model.addAttribute("applications", applications);
+		List<Application> approvedApplications = applicationService.getFacultyApprovedApplications(id);
+		model.addAttribute("applications", approvedApplications);
 		model.addAttribute("pageTitle", "Λίστα κατάταξης συνεργαζόμενου τμήματος");
 		return "list-applications";
 	}
-
+	
 }
